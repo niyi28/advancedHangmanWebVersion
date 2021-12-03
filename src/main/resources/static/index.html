@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Advanced Hangman - Create New Game</title>
+    <script src="/index.js"></script>
+</head>
+<body>
+  <h2>Advanced Hangman - Create New Game</h2>
+  <p>Click the button to start a game.</p>
+  <label>Enter your name: </label>
+  <input id="playerName" type="text" size="20" />
+  <br/><br/>
+  <label>Select the language: </label>
+  <select id="language">
+      <option value="english">English</option>
+      <option value="german">German</option>
+  </select>
+  <br/><br/>
+  <input type="button" value="Start Game" onclick="createGame();" />
+</body>
+</html>
