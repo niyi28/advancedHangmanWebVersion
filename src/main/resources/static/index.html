@@ -8,14 +8,26 @@
 <body>
   <h2>Advanced Hangman - Create New Game</h2>
   <p>Click the button to start a game.</p>
+
   <label>Enter your name: </label>
   <input id="playerName" type="text" size="20" />
   <br/><br/>
+
   <label>Select the language: </label>
   <select id="language">
-      <option value="english">English</option>
-      <option value="german">German</option>
+      <option value="1">English</option>
+      <option value="2">German</option>
   </select>
+  <br/><br/>
+
+  <label>Select the difficulty: </label><br/>
+  <input type="radio" id="easy" name="difficulty" value="1">
+  <label for="easy">Easy</label><br>
+  <input type="radio" id="medium" name="difficulty" value="2">
+  <label for="medium">Medium</label><br>
+  <input type="radio" id="hard" name="difficulty" value="3">
+  <label for="hard">Hard</label><br>
+
   <br/><br/>
   <input type="button" value="Start Game" onclick="createGame();" />
 </body>

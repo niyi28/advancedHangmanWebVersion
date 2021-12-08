@@ -1,7 +1,9 @@
 
 const createGame = async () => {
     var _playerName = document.getElementById('playerName').value;
-    const response = await fetch("/createGame?playerName="+_playerName);
+    var _language = document.getElementById('language').value;
+    const response = await fetch(
+        "/createGame?playerName="+_playerName+"&language="+_language);
     const isOk = await response.text();
     if (isOk !== "OK") {
         alert('Could not create the game, try again!');

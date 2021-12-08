@@ -12,7 +12,10 @@ public class AdvancedHangmanController {
     private AdvancedHangmanService service;
 
     @GetMapping("/createGame")
-    public String createGame(@RequestParam(name = "playerName") String playerName) {
+    public String createGame(
+            @RequestParam(name = "playerName") String playerName,
+            @RequestParam(name = "language") int language,
+            @RequestParam(name = "difficulty") int difficulty) {
         service.createGame(playerName);
         return "OK";
     }
@@ -25,4 +28,10 @@ public class AdvancedHangmanController {
         return response;
     }
 
+    @GetMapping("/submitLetter")
+    public String submitLetter(@RequestParam(name = "letter") String letter) {
+        // do something with the letter
+        // return gameStatus
+        return "gameStatus";
+    }
 }
