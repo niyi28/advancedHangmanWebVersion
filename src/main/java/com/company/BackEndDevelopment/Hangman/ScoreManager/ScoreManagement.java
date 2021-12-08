@@ -31,9 +31,12 @@ public class ScoreManagement {
 
     private int getAverageScore() throws IOException {
         bestScore = selectBestScore(currentScore);
-        currentAvg =  ((currentAvg*(numberOfUsers-1)/numberOfUsers) +
-                        (bestScore/numberOfUsers));
-        return currentAvg;
+        if(numberOfUsers > 0) {
+            currentAvg =  ((currentAvg*(numberOfUsers-1)/numberOfUsers) +
+                    (bestScore/numberOfUsers));
+            return currentAvg;
+        }
+        return 0;
     }
 
     private int getAverageScore(int currentScore, int bestScore) throws IOException {
