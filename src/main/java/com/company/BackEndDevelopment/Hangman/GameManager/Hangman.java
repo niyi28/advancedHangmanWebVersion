@@ -20,6 +20,7 @@ public class Hangman {
     final private String username;
     final private ScoreManagement scoreManagement;
     final private String password;
+    final private Leaderboard leaderboard = new Leaderboard();
 
     public Hangman(String username, String password) throws IOException {
         this.username = username;
@@ -74,6 +75,11 @@ public class Hangman {
                 System.out.println("Guessed: " + guessedWord);
 
                 if (randomWord.equals(guessedWord)){
+                    try {
+                        leaderboard.publishNewScore(username, playerScore);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     break;
                 }
 
