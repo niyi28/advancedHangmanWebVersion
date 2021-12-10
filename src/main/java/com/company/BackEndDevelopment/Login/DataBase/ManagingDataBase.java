@@ -147,9 +147,14 @@ public class ManagingDataBase {
             Map<String, List<String>> userAndScores = getUserAndScoresFromDataBase();
             Map<String, String> userAndScale = getUserAndGradeScaleFromDatabase();
             StringBuilder leaderboard = new StringBuilder();
+            String userDataHeading = "username, Current Score, Best Score, Grade Scale";
+            leaderboard.append(userDataHeading).append("\n");
             for (Map.Entry<String, List<String>> entry : userAndScores.entrySet()){
-                String userData = entry.toString() + "," + userAndScale.get(entry.getKey());
-                leaderboard.append(entry.toString()).append("\n");
+                String userData = "" + entry.getKey() + ", ";
+                userData += "" + entry.getValue().get(0) + ", " ;
+                userData += "" + entry.getValue().get(1) + ", " ;
+                userData += "" + userAndScale.get(entry.getKey());
+                leaderboard.append(userData).append("\n");
             }
             return leaderboard.toString();
         }

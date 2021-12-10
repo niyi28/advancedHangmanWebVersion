@@ -1,6 +1,7 @@
 package com.company.BackEndDevelopment.Application;
 
 import com.company.BackEndDevelopment.Hangman.GameManager.Hangman;
+import com.company.BackEndDevelopment.Hangman.GameManager.Leaderboard;
 import com.company.BackEndDevelopment.Login.LoginValidation;
 
 import javax.sound.sampled.LineUnavailableException;
@@ -17,7 +18,8 @@ public class ApplicationOverview {
         System.out.println("username: " + username);
         Hangman hangman = new Hangman(username, password);
         hangman.gameOverview();
-
+        /*Leaderboard leaderboard = new Leaderboard();
+        System.out.println(leaderboard.toPrintLeaderboard());*/
         /*http://localhost:8081/game.html*/
        // System.out.println("username data store after: " + loginValidation.getUsernamesData());
 
