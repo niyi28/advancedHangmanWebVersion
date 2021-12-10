@@ -143,6 +143,17 @@ public class ManagingDataBase {
             return readLoginDetailsFromDataBase().size();
         }
 
+        public static String makingDatabaseAvailable() throws IOException {
+            Map<String, List<String>> userAndScores = getUserAndScoresFromDataBase();
+            Map<String, String> userAndScale = getUserAndGradeScaleFromDatabase();
+            StringBuilder leaderboard = new StringBuilder();
+            for (Map.Entry<String, List<String>> entry : userAndScores.entrySet()){
+                String userData = entry.toString() + "," + userAndScale.get(entry.getKey());
+                leaderboard.append(entry.toString()).append("\n");
+            }
+            return leaderboard.toString();
+        }
+
 
 
 }

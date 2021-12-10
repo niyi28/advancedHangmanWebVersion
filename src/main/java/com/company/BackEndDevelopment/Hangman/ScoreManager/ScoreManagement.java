@@ -62,8 +62,6 @@ public class ScoreManagement {
         return ManagingDataBase.getUserGradeScale(username);
     }
 
-
-
     public void setCurrentScore(int currentScore) throws IOException {
         this.currentScore = currentScore;
         bestScore = selectBestScore(currentScore);

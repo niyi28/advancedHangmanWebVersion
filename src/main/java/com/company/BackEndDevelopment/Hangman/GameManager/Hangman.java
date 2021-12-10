@@ -60,7 +60,7 @@ public class Hangman {
                     }
                 }
                 if (ifGuessTrue > 0){
-                    playerScore = playerScore + 2;
+                    playerScore = makeNonNegativeScore(playerScore) + 2;
                     for (int correctIndex : correctIndexes){
                         guessedWord = guessedWord.substring(0, correctIndex) + guessedLetterUpperCase +  guessedWord.substring(correctIndex + 1);
                     }
@@ -69,7 +69,8 @@ public class Hangman {
                     HangmanDoom hangmanDoom = new HangmanDoom();
                     hangmanDoom.printhangmanDrawingWhenPlayerFails(numberOfFailedTries);
                     numberOfFailedTries--;
-                    playerScore --;
+                    playerScore--;
+                    playerScore = makeNonNegativeScore(playerScore);
                     printCorrectWordAfterEightTries(randomWord, numberOfFailedTries, wordRandomizer.getUserLanguage());
                 }
                 System.out.println("Guessed: " + guessedWord);
@@ -91,6 +92,10 @@ public class Hangman {
 
     private void gameIntro(){
         HangmanIntro hangmanIntro = new HangmanIntro();
+    }
+
+    private int makeNonNegativeScore(int playScore){
+        return Math.max(playScore, 0);
     }
 
 
