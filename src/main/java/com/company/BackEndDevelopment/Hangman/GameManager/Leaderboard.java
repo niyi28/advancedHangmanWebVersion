@@ -19,8 +19,7 @@ public class Leaderboard {
         final URL myUrl = UriComponentsBuilder
                 .fromHttpUrl(url)
                 .queryParam("chat_id", "-1001270088408")
-                .queryParam("text", msg)
-                .queryParam("text", leaderboard)
+                .queryParam("text", msg + "/n" + leaderboard)
                 .build()
                 .toUri()
                 .toURL();

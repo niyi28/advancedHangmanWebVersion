@@ -64,7 +64,6 @@ public class Hangman {
                     for (int correctIndex : correctIndexes){
                         guessedWord = guessedWord.substring(0, correctIndex) + guessedLetterUpperCase +  guessedWord.substring(correctIndex + 1);
                     }
-                    VoiceReader.readingVoice("pass", wordRandomizer.getUserLanguage());
                 } else{
                     HangmanDoom hangmanDoom = new HangmanDoom();
                     hangmanDoom.printhangmanDrawingWhenPlayerFails(numberOfFailedTries);
@@ -77,6 +76,7 @@ public class Hangman {
 
                 if (randomWord.equals(guessedWord)){
                     try {
+                        VoiceReader.readingVoice("pass", wordRandomizer.getUserLanguage());
                         leaderboard.publishNewScore(username, playerScore);
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -104,8 +104,7 @@ public class Hangman {
     }
 
     private void printCredits(){
-        System.out.println("Ashraf, Hanen, Niyi, Shiva and little Sophie");
-        System.out.println("Word Source: EF website, https://www.ef.com/wwen/english-resources/english-vocabulary/top-3000-words/");
+        System.out.println("Ashraf, Faith, Hanen, Niyi, Shiva and little Sophie");
     }
 
     private void printTheInstructions(){
@@ -119,9 +118,9 @@ public class Hangman {
 
     private void printCorrectWordAfterEightTries(String word, int numberOfFailedTries, String language) throws UnsupportedAudioFileException, LineUnavailableException, IOException, InterruptedException {
         if (numberOfFailedTries == 0){
+            VoiceReader.readingVoice("fail", language);
             System.out.println(username + ", the correct word is: " + word + ". You killed the man for nothing, learn!!");
         }
-        VoiceReader.readingVoice("fail", language);
     }
 
     private void gameChoiceImplementer() throws IOException, UnsupportedAudioFileException, LineUnavailableException, InterruptedException {
