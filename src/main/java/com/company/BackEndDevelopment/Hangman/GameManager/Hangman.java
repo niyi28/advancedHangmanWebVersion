@@ -75,12 +75,7 @@ public class Hangman {
                 System.out.println("Guessed: " + guessedWord);
 
                 if (randomWord.equals(guessedWord)){
-                    try {
-                        VoiceReader.readingVoice("pass", wordRandomizer.getUserLanguage());
-                        leaderboard.publishNewScore(username, playerScore);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                    VoiceReader.readingVoice("pass", wordRandomizer.getUserLanguage());
                     break;
                 }
 
@@ -89,6 +84,7 @@ public class Hangman {
         }
         ManagingDataBase.addUserAndScore(username,password, scoreManagement);
     }
+
 
     private void gameIntro(){
         HangmanIntro hangmanIntro = new HangmanIntro();
@@ -129,6 +125,12 @@ public class Hangman {
         if (chosenInstruction.equals("P")){
             playGame();
             System.out.println("We hope you enjoyed the game, " + username);
+            try {
+                int currentScore = Integer.parseInt(scoreManagement.getScores(username).get(0));
+                leaderboard.publishNewScore(username, currentScore);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             gameChoiceImplementer();
         } else if (chosenInstruction.equals("I") ){
             printTheInstructions();

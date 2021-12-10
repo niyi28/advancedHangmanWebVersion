@@ -14,7 +14,7 @@ public class Leaderboard {
     public void publishNewScore(String username, int playerScore) throws Exception {
         String url =  "https://api.telegram.org/bot5067225993:AAFA0p-uucy_zXBbp23XQPJL-xDHKvPqLoU/sendMessage";
         String msg = "New Score By " + username + ": " + playerScore;
-        String leaderboard = toPrintLeaderboard();
+        String leaderboard = msg + "\n" + toPrintLeaderboard();
 
         final URL myUrl = UriComponentsBuilder
                 .fromHttpUrl(url)

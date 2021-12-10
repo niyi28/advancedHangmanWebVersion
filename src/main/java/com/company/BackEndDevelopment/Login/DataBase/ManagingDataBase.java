@@ -147,7 +147,7 @@ public class ManagingDataBase {
             Map<String, List<String>> userAndScores = getUserAndScoresFromDataBase();
             Map<String, String> userAndScale = getUserAndGradeScaleFromDatabase();
             StringBuilder leaderboard = new StringBuilder();
-            String userDataHeading = "username, Current Score, Best Score, Grade Scale";
+            String userDataHeading = "username, Current Score, Best Score, Best Grade Scale";
             leaderboard.append(userDataHeading).append("\n");
             for (Map.Entry<String, List<String>> entry : userAndScores.entrySet()){
                 String userData = "" + entry.getKey() + ", ";
