@@ -7,14 +7,16 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.List;
-import java.util.Map;
+
 
 public class Leaderboard {
+    private String smileyResponse;
+
     public void publishNewScore(String username, int playerScore) throws Exception {
         String url =  "https://api.telegram.org/bot5067225993:AAFA0p-uucy_zXBbp23XQPJL-xDHKvPqLoU/sendMessage";
         String msg = "New Score By " + username + ": " + playerScore;
-        String leaderboard = msg + "\n" + toPrintLeaderboard();
+        String leaderboard = msg + "\n" +"smiley response: " + smileyResponse
+                + "\n" + toPrintLeaderboard();
 
         final URL myUrl = UriComponentsBuilder
                 .fromHttpUrl(url)
@@ -26,7 +28,14 @@ public class Leaderboard {
         sendRequest(myUrl);
     }
 
+    public void setSmileyResponse(int smileyResponse) {
+        String y = Character.toString(smileyResponse);
+        this.smileyResponse = y;
+    }
 
+    public String getSmileyResponse() {
+        return smileyResponse;
+    }
 
     private static void sendRequest(URL url) throws Exception {
         URLConnection yc = url.openConnection();

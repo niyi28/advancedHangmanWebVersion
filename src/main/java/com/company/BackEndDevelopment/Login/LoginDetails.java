@@ -8,7 +8,11 @@ public class LoginDetails {
     public static String getUsername() throws BadLoginDetails {
         System.out.print("Please put in your username: ");
         String userName = scanner.nextLine().toLowerCase();
-        validatingUsername(userName);
+        while ((isInteger(userName)) || (checkForLettersAndPoint(userName)) || (userName.length() < 2)){
+            System.out.println("No special letters and integers please !!!");
+            System.out.print("Please put in correct username: ");
+            userName = scanner.nextLine().toLowerCase();
+        }
         return userName;
 
     }
@@ -50,11 +54,12 @@ public class LoginDetails {
     private static boolean checkForLettersAndPoint(String s) {
         for (String character: s.split("")){
             if (!character.matches("[a-zA-Z]+") && !character.equals(".")) {
-                return false;
+                return true;
             }
         }
-        return true;
+        return false;
     }
+
 
     public static String getPassword(){
         /*"hh"*/

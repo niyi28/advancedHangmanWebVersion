@@ -15,21 +15,13 @@ public class ApplicationOverview {
         loginValidation.flockingIntoSocialFolks();
         String username = loginValidation.getUsername();
         String password = loginValidation.getPassword();
-        System.out.println("username: " + username);
+        /*System.out.println("username: " + username);*/
         Hangman hangman = new Hangman(username, password);
         hangman.gameOverview();
-        /*Leaderboard leaderboard = new Leaderboard();
-        System.out.println(leaderboard.toPrintLeaderboard());*/
-        /*http://localhost:8081/game.html*/
-       // System.out.println("username data store after: " + loginValidation.getUsernamesData());
 
-       /* Hangman hangman = new Hangman(username);
-        hangman.gameOverview();*/
-
-        /*/createGame?playerName=Oleniyi*/
-
-        /*/createGame?playerName=Oleniyi&language=english*/
-
-
+        /*int[] surrogates = {0x1F601};
+        String alienEmojiString = new String(surrogates, 0, surrogates.length);
+        System.out.println(alienEmojiString);*/
+       /* String y = Character.toString( 128_512);*/
     }
 }

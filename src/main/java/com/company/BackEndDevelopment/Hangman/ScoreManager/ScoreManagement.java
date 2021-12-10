@@ -13,6 +13,7 @@ public class ScoreManagement {
     private final int numberOfUsers = ManagingDataBase.getDatabaseSize();
     private int bestScore = 0;
     private final String username;
+    private GameStatusChecker gameStatus;
 
 
     public ScoreManagement(String username) throws IOException {
@@ -46,24 +47,23 @@ public class ScoreManagement {
         return currentAvg;
     }
 
-    public GradeBestScore scalingBestScore(String username) throws IOException {
-        if (numberOfUsers > 0){
-            if (this.username.equals(username)){
-                if (bestScore < currentAvg){
-                    System.out.println(this.username + "'s best score is lower than average best score");
-                    return GradeBestScore.BelowAverage;
-                }else if (bestScore > currentAvg){
-                    System.out.println(this.username + "'s best score is higher than average best score");
-                    return GradeBestScore.AboveAverage;
-                }else{
-                    System.out.println(this.username + "'s best score is average best score");
-                    return GradeBestScore.Average;
-                }
+    public void gradeGameStatus(String username, String result) throws IOException {
+        if (this.username.equals(username)){
+            if (result.equals("lost")){
+                gameStatus = GameStatusChecker.Lost;
             }
-            return ManagingDataBase.getUserGradeScale(username);
+            gameStatus = GameStatusChecker.Won;
+        }else {
+            gameStatus = ManagingDataBase.getUserGradeScale(username);
         }
-        return GradeBestScore.Average;
     }
+
+    public GameStatusChecker getGameStatus(){
+        return gameStatus;
+    }
+
+
+
 
     public void setCurrentScore(int currentScore) throws IOException {
         this.currentScore = currentScore;

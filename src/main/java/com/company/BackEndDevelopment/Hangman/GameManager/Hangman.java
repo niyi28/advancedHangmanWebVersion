@@ -76,9 +76,10 @@ public class Hangman {
 
                 if (randomWord.equals(guessedWord)){
                     VoiceReader.readingVoice("pass", wordRandomizer.getUserLanguage());
+                    leaderboard.setSmileyResponse(0x1F973);
+                    scoreManagement.gradeGameStatus(username, "pass");
                     break;
                 }
-
                 System.out.println("Hey " + username + ", you scored : " +  playerScore);
                 scoreManagement.setCurrentScore(playerScore);
         }
@@ -115,7 +116,9 @@ public class Hangman {
     private void printCorrectWordAfterEightTries(String word, int numberOfFailedTries, String language) throws UnsupportedAudioFileException, LineUnavailableException, IOException, InterruptedException {
         if (numberOfFailedTries == 0){
             VoiceReader.readingVoice("fail", language);
-            System.out.println(username + ", the correct word is: " + word + ". You killed the man for nothing, learn!!");
+            leaderboard.setSmileyResponse(0x1F631);
+            scoreManagement.gradeGameStatus(username, "lost");
+            System.out.println(username + ", the correct word is: " + word);
         }
     }
 

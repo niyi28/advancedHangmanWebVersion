@@ -1,7 +1,7 @@
 package com.company.BackEndDevelopment.Login.DataBase;
 
 
-import com.company.BackEndDevelopment.Hangman.ScoreManager.GradeBestScore;
+import com.company.BackEndDevelopment.Hangman.ScoreManager.GameStatusChecker;
 import com.company.BackEndDevelopment.Hangman.ScoreManager.ScoreManagement;
 
 import java.io.*;
@@ -15,10 +15,10 @@ public class ManagingDataBase {
         for(Map.Entry<String, String> entry: usernameDataBase.entrySet()){
 
             List <String> score = scoreManagement.getScores(entry.getKey());
-            GradeBestScore gradeBestScore = scoreManagement.scalingBestScore(entry.getKey());
+            GameStatusChecker gameStatusChecker = scoreManagement.getGameStatus();
 
             rows.add(Arrays.asList(entry.getKey(), entry.getValue(),
-                    score.get(0), score.get(1), String.valueOf(gradeBestScore)));
+                    score.get(0), score.get(1), String.valueOf(gameStatusChecker)));
         }
         String path = "src/main/java/com/company/BackEndDevelopment/Login/DataBase/database.csv";
         createOrMaintainDirectory(path);
@@ -108,12 +108,12 @@ public class ManagingDataBase {
             return userAndGrade;
         }
 
-    public static GradeBestScore getUserGradeScale(String username) throws IOException {
+    public static GameStatusChecker getUserGradeScale(String username) throws IOException {
         Map<String, String> x = getUserAndGradeScaleFromDatabase();
         if (x.containsKey(username)){
-            return GradeBestScore.valueOf(x.get(username));
+            return GameStatusChecker.valueOf(x.get(username));
         }
-        return GradeBestScore.Unknown;
+        return GameStatusChecker.Unknown;
     }
 
         public static void addUserAndScore(String name, String password, ScoreManagement scoreManagement)
@@ -147,7 +147,7 @@ public class ManagingDataBase {
             Map<String, List<String>> userAndScores = getUserAndScoresFromDataBase();
             Map<String, String> userAndScale = getUserAndGradeScaleFromDatabase();
             StringBuilder leaderboard = new StringBuilder();
-            String userDataHeading = "username, Current Score, Best Score, Best Grade Scale";
+            String userDataHeading = "username, Current Score, Best Score, Result";
             leaderboard.append(userDataHeading).append("\n");
             for (Map.Entry<String, List<String>> entry : userAndScores.entrySet()){
                 String userData = "" + entry.getKey() + ", ";
