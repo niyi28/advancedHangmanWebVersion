@@ -47,19 +47,22 @@ public class ScoreManagement {
     }
 
     public GradeBestScore scalingBestScore(String username) throws IOException {
-        if (this.username.equals(username)){
-            if (bestScore < currentAvg){
-                System.out.println(this.username + "'s best score is lower than average best score");
-                return GradeBestScore.BelowAverage;
-            }else if (bestScore > currentAvg){
-                System.out.println(this.username + "'s best score is higher than average best score");
-                return GradeBestScore.AboveAverage;
-            }else{
-                System.out.println(this.username + "'s best score is average best score");
-                return GradeBestScore.Average;
+        if (numberOfUsers > 0){
+            if (this.username.equals(username)){
+                if (bestScore < currentAvg){
+                    System.out.println(this.username + "'s best score is lower than average best score");
+                    return GradeBestScore.BelowAverage;
+                }else if (bestScore > currentAvg){
+                    System.out.println(this.username + "'s best score is higher than average best score");
+                    return GradeBestScore.AboveAverage;
+                }else{
+                    System.out.println(this.username + "'s best score is average best score");
+                    return GradeBestScore.Average;
+                }
             }
+            return ManagingDataBase.getUserGradeScale(username);
         }
-        return ManagingDataBase.getUserGradeScale(username);
+        return GradeBestScore.Average;
     }
 
     public void setCurrentScore(int currentScore) throws IOException {
