@@ -31,7 +31,7 @@ public class ManagingDataBase {
             csvWriter.append(",");
             csvWriter.append("Best Score");
             csvWriter.append(",");
-            csvWriter.append("Grade");
+            csvWriter.append("Result");
             csvWriter.append("\n");
             for (List<String> rowData : rows) {
                 csvWriter.append(String.join(",", rowData));
@@ -143,20 +143,50 @@ public class ManagingDataBase {
             return readLoginDetailsFromDataBase().size();
         }
 
-        public static String makingDatabaseAvailable() throws IOException {
+        public static List<List<String>> makingDatabaseAvailable() throws IOException {
+            List<List<String>> rows = new ArrayList<>();
             Map<String, List<String>> userAndScores = getUserAndScoresFromDataBase();
             Map<String, String> userAndScale = getUserAndGradeScaleFromDatabase();
-            StringBuilder leaderboard = new StringBuilder();
-            String userDataHeading = "username, Current Score, Best Score, Result";
-            leaderboard.append(userDataHeading).append("\n");
-            for (Map.Entry<String, List<String>> entry : userAndScores.entrySet()){
-                String userData = "" + entry.getKey() + ", ";
-                userData += "" + entry.getValue().get(0) + ", " ;
-                userData += "" + entry.getValue().get(1) + ", " ;
-                userData += "" + userAndScale.get(entry.getKey());
-                leaderboard.append(userData).append("\n");
+            List<Map.Entry<String, String>> listArranged = arrangeBasedOnBestscore();
+            List<String> headers = Arrays.asList("username", "Current Score", "Best Score", "Result");
+            rows.add(headers);
+
+            for (Map.Entry<String, String> entry : listArranged){
+                rows.add(Arrays.asList(entry.getKey(), userAndScores.get(entry.getKey()).get(0),
+                        userAndScores.get(entry.getKey()).get(1), userAndScale.get(entry.getKey())));
             }
-            return leaderboard.toString();
+
+            return rows;
+        }
+
+        public static  List<Map.Entry<String, String>> arrangeBasedOnBestscore() throws IOException {
+            Map<String, String> userAndBestscore = getUsernameAndBestscore();
+            List<Map.Entry<String, String>> list = new ArrayList<>(userAndBestscore.entrySet());
+            List<Map.Entry<String, String>> listReverse = new ArrayList<>();
+            list.sort(Map.Entry.comparingByValue());
+
+            for (int i = (list.size() -1); i >= 0; i-- ){
+                listReverse.add(list.get(i));
+            }
+            return listReverse;
+        }
+
+        private static Map<String, String> getUsernameAndBestscore() throws IOException {
+            Map <String, String> userAndBestscore = new HashMap<>();
+            String path = "src/main/java/com/company/BackEndDevelopment/Login/DataBase/database.csv";
+            createOrMaintainDirectory(path);
+            try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
+                String line;
+                int counter = 0;
+                while ((line = reader.readLine()) != null) {
+                    counter++;
+                    if (counter > 1) {
+                        String[] x = line.split(",");
+                        userAndBestscore.put(x[0], x[3]);
+                    }
+                }
+            }
+            return userAndBestscore;
         }
 
 

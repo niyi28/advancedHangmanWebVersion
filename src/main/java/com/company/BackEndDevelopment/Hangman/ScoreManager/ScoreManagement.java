@@ -51,8 +51,9 @@ public class ScoreManagement {
         if (this.username.equals(username)){
             if (result.equals("lost")){
                 gameStatus = GameStatusChecker.Lost;
+            }else{
+                gameStatus = GameStatusChecker.Won;
             }
-            gameStatus = GameStatusChecker.Won;
         }else {
             gameStatus = ManagingDataBase.getUserGradeScale(username);
         }
