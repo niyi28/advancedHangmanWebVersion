@@ -15,7 +15,7 @@ public class ManagingDataBase {
         for(Map.Entry<String, String> entry: usernameDataBase.entrySet()){
 
             List <String> score = scoreManagement.getScores(entry.getKey());
-            GameStatusChecker gameStatusChecker = scoreManagement.getGameStatus();
+            GameStatusChecker gameStatusChecker = scoreManagement.getGameStatus(entry.getKey());
 
             rows.add(Arrays.asList(entry.getKey(), entry.getValue(),
                     score.get(0), score.get(1), String.valueOf(gameStatusChecker)));

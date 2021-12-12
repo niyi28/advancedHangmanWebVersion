@@ -58,8 +58,11 @@ public class ScoreManagement {
         }
     }
 
-    public GameStatusChecker getGameStatus(){
-        return gameStatus;
+    public GameStatusChecker getGameStatus(String username) throws IOException {
+        if (username.equals(this.username)){
+            return gameStatus;
+        }
+        return ManagingDataBase.getUserGradeScale(username);
     }
 
 
