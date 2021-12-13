@@ -143,19 +143,44 @@ public class ManagingDataBase {
             return readLoginDetailsFromDataBase().size();
         }
 
-        public static List<List<String>> makingDatabaseAvailable() throws IOException {
+        public static List<List<String>> makingDatabaseAvailableToTelegram() throws IOException {
             List<List<String>> rows = new ArrayList<>();
             Map<String, List<String>> userAndScores = getUserAndScoresFromDataBase();
             Map<String, String> userAndScale = getUserAndGradeScaleFromDatabase();
             List<Map.Entry<String, String>> listArranged = arrangeBasedOnBestscore();
-            List<String> headers = Arrays.asList("Username", "Current Score", "Best Score", "Result");
+            List<String> headers = Arrays.asList("Username", "Best Score", "Result");
             rows.add(headers);
 
             for (Map.Entry<String, String> entry : listArranged){
-                rows.add(Arrays.asList(entry.getKey(), userAndScores.get(entry.getKey()).get(0),
+                rows.add(Arrays.asList(entry.getKey(),
                         userAndScores.get(entry.getKey()).get(1), userAndScale.get(entry.getKey())));
             }
+            return rows;
+        }
+        public static List<List<String>> makingDatabaseAvailable() throws IOException {
+            List<List<String>> rows = new ArrayList<>();
+            final String TEXT_RED = "\u001B[31m";
+            final String TEXT_BLUE = "\u001B[34m";
+            final String TEXT_YELLOW = "\u001B[33m";
+            final String TEXT_RESET = "\u001B[0m";
+            Map<String, List<String>> userAndScores = getUserAndScoresFromDataBase();
+            Map<String, String> userAndScale = getUserAndGradeScaleFromDatabase();
+            List<Map.Entry<String, String>> listArranged = arrangeBasedOnBestscore();
+            List<String> headers = Arrays.asList("Username", "Score", "Best Score", "Result");
+            rows.add(headers);
 
+            for (Map.Entry<String, String> entry : listArranged){
+                if (userAndScale.get(entry.getKey()).equals("Lost")){
+                    rows.add(Arrays.asList(entry.getKey(), userAndScores.get(entry.getKey()).get(0),
+                            userAndScores.get(entry.getKey()).get(1), TEXT_RED + userAndScale.get(entry.getKey()) + TEXT_RESET));
+                }else if (userAndScale.get(entry.getKey()).equals("Won")){
+                    rows.add(Arrays.asList(entry.getKey(), userAndScores.get(entry.getKey()).get(0),
+                            userAndScores.get(entry.getKey()).get(1), TEXT_BLUE + userAndScale.get(entry.getKey()) + TEXT_RESET));
+                }else{
+                    rows.add(Arrays.asList(entry.getKey(), userAndScores.get(entry.getKey()).get(0),
+                            userAndScores.get(entry.getKey()).get(1), TEXT_YELLOW + userAndScale.get(entry.getKey()) + TEXT_RESET));
+                }
+            }
             return rows;
         }
 

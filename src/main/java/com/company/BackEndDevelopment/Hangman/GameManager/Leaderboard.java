@@ -16,13 +16,14 @@ public class Leaderboard {
     public String publishNewScore(String username, int playerScore) throws Exception {
         String url =  "https://api.telegram.org/bot5067225993:AAFA0p-uucy_zXBbp23XQPJL-xDHKvPqLoU/sendMessage";
         String msg = "New Score by " + username + ": " + playerScore;
-        String leaderboard = msg + "\n" +"smiley response: " + smileyResponse
-                + "\n" + toPrintLeaderboard();
+        String leaderboard = "```" + "\n" + msg + "\n" +"smiley response: " + smileyResponse
+                + "\n" + toPrintLeaderboard() + "\n" + "```";
 
         final URL myUrl = UriComponentsBuilder
                 .fromHttpUrl(url)
                 .queryParam("chat_id", "-1001270088408")
                 .queryParam("text", leaderboard)
+                .queryParam("parse_mode", "MarkdownV2")
                 /*.queryParam("image", leaderboard)*/
                 .build()
                 .toUri()
@@ -46,6 +47,6 @@ public class Leaderboard {
     }
 
     public String toPrintLeaderboard() throws IOException {
-        return TableFormatCreator.formatAsTable(ManagingDataBase.makingDatabaseAvailable());
+        return TableFormatCreator.formatAsTable(ManagingDataBase.makingDatabaseAvailableToTelegram());
     }
 }

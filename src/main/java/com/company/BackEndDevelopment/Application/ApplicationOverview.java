@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class ApplicationOverview {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         LoginValidation loginValidation = new LoginValidation();
         try {
             loginValidation.flockingIntoSocialFolks();
@@ -32,7 +32,5 @@ public class ApplicationOverview {
                 LineUnavailableException | InterruptedException e) {
             e.printStackTrace();
         }
-        /*Leaderboard leaderboard = new Leaderboard();
-        System.out.println(leaderboard.toPrintLeaderboard());*/
     }
 }
