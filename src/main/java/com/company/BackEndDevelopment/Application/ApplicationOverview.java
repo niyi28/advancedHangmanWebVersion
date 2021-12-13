@@ -2,7 +2,6 @@ package com.company.BackEndDevelopment.Application;
 
 import com.company.BackEndDevelopment.Hangman.GameManager.Hangman;
 import com.company.BackEndDevelopment.Hangman.GameManager.Leaderboard;
-import com.company.BackEndDevelopment.Login.DataBase.ManagingDataBase;
 import com.company.BackEndDevelopment.Login.LoginValidation;
 
 import javax.sound.sampled.LineUnavailableException;
@@ -29,7 +28,8 @@ public class ApplicationOverview {
         }
         try {
             hangman.gameOverview();
-        } catch (IOException | UnsupportedAudioFileException | LineUnavailableException | InterruptedException e) {
+        } catch (IOException | UnsupportedAudioFileException |
+                LineUnavailableException | InterruptedException e) {
             e.printStackTrace();
         }
         /*Leaderboard leaderboard = new Leaderboard();

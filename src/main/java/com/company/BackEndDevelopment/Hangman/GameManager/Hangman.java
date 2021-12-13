@@ -28,6 +28,19 @@ public class Hangman {
         scoreManagement = new ScoreManagement(username);
     }
 
+    private String toChangeUsernameFirstLetter(String username){
+       String usernameWithCapitalFirstLetter = "";
+       String letter;
+       for (int letterNum = 0; letterNum < username.length(); letterNum++){
+           letter = String.valueOf(username.charAt(letterNum));
+           if (letterNum == 0){
+               letter = letter.toUpperCase();
+           }
+           usernameWithCapitalFirstLetter = usernameWithCapitalFirstLetter + letter;
+       }
+       return usernameWithCapitalFirstLetter;
+    }
+
     private void playGame () throws IOException, UnsupportedAudioFileException, LineUnavailableException, InterruptedException {
 
         System.out.println("\nLet's play!");
@@ -97,7 +110,7 @@ public class Hangman {
 
 
     private void quitTheGame(){
-        System.out.println(username + ", you quit!!");
+        System.out.println(toChangeUsernameFirstLetter(username) + ", you quit!!");
     }
 
     private void printCredits(){
@@ -105,7 +118,7 @@ public class Hangman {
     }
 
     private void printTheInstructions(){
-        HangmanIntro.printGameInstructions(username);
+        HangmanIntro.printGameInstructions(toChangeUsernameFirstLetter(username));
     }
 
     public void gameOverview() throws IOException, UnsupportedAudioFileException, LineUnavailableException, InterruptedException {
@@ -118,7 +131,7 @@ public class Hangman {
             VoiceReader.readingVoice("fail", language);
             leaderboard.setSmileyResponse(0x1F631);
             scoreManagement.gradeGameStatus(username, "lost");
-            System.out.println(username + ", the correct word is: " + word);
+            System.out.println(toChangeUsernameFirstLetter(username) + ", the correct word is: " + word);
         }
     }
 
@@ -127,7 +140,7 @@ public class Hangman {
         String chosenInstruction = getchosenInstruction();
         if (chosenInstruction.equals("P")){
             playGame();
-            System.out.println("We hope you enjoyed the game, " + username);
+            System.out.println("We hope you enjoyed the game, " + toChangeUsernameFirstLetter(username));
             try {
                 int currentScore = Integer.parseInt(scoreManagement.getScores(username).get(0));
                 leaderboard.publishNewScore(username, currentScore);

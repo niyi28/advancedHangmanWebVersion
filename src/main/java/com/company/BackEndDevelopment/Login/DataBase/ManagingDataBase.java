@@ -148,7 +148,7 @@ public class ManagingDataBase {
             Map<String, List<String>> userAndScores = getUserAndScoresFromDataBase();
             Map<String, String> userAndScale = getUserAndGradeScaleFromDatabase();
             List<Map.Entry<String, String>> listArranged = arrangeBasedOnBestscore();
-            List<String> headers = Arrays.asList("username", "Current Score", "Best Score", "Result");
+            List<String> headers = Arrays.asList("Username", "Current Score", "Best Score", "Result");
             rows.add(headers);
 
             for (Map.Entry<String, String> entry : listArranged){
