@@ -2,6 +2,8 @@ package com.company.BackEndDevelopment.Application;
 
 import com.company.BackEndDevelopment.Hangman.GameManager.Hangman;
 import com.company.BackEndDevelopment.Hangman.GameManager.Leaderboard;
+import com.company.BackEndDevelopment.Hangman.SupplementaryClasses.TableFormatCreator;
+import com.company.BackEndDevelopment.Login.DataBase.ManagingDataBase;
 import com.company.BackEndDevelopment.Login.LoginValidation;
 
 import javax.sound.sampled.LineUnavailableException;
@@ -11,7 +13,7 @@ import java.io.IOException;
 
 public class ApplicationOverview {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         LoginValidation loginValidation = new LoginValidation();
         try {
             loginValidation.flockingIntoSocialFolks();
@@ -30,6 +32,12 @@ public class ApplicationOverview {
             hangman.gameOverview();
         } catch (IOException | UnsupportedAudioFileException |
                 LineUnavailableException | InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            System.out.println(TableFormatCreator.formatAsTable(ManagingDataBase.makingDatabaseAvailable()));
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

@@ -4,6 +4,7 @@ import com.company.BackEndDevelopment.Hangman.SupplementaryClasses.TableFormatCr
 import com.company.BackEndDevelopment.Login.DataBase.ManagingDataBase;
 import org.springframework.web.util.UriComponentsBuilder;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -15,7 +16,7 @@ public class Leaderboard {
 
     public String publishNewScore(String username, int playerScore) throws Exception {
         String url =  "https://api.telegram.org/bot5067225993:AAFA0p-uucy_zXBbp23XQPJL-xDHKvPqLoU/sendMessage";
-        String msg = "New Score by " + username + ": " + playerScore;
+        String msg = "New Score by " + Hangman.toChangeUsernameFirstLetter(username) + ": " + playerScore;
         String leaderboard = "```" + "\n" + msg + "\n" +"smiley response: " + smileyResponse
                 + "\n" + toPrintLeaderboard() + "\n" + "```";
 
@@ -30,6 +31,22 @@ public class Leaderboard {
                 .toURL();
         sendRequest(myUrl);
         return leaderboard;
+    }
+
+    public String publishPhoto() throws Exception {
+        String url =  "https://api.telegram.org/bot5067225993:AAFA0p-uucy_zXBbp23XQPJL-xDHKvPqLoU/SendPhoto";
+        String path = "https://pbs.twimg.com/media/FGkEbm6XwAAxp1H?format=png&name=small";
+
+        final URL myUrl = UriComponentsBuilder
+                .fromHttpUrl(url)
+                .queryParam("chat_id", "-1001270088408")
+                .queryParam("photo", path )
+                .queryParam("caption", "The Formidable Team" )
+                .build()
+                .toUri()
+                .toURL();
+        sendRequest(myUrl);
+        return path;
     }
 
     public void setSmileyResponse(int smileyResponse) {

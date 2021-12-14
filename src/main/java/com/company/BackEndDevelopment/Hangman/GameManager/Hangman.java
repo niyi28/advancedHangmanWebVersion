@@ -28,7 +28,7 @@ public class Hangman {
         scoreManagement = new ScoreManagement(username);
     }
 
-    private String toChangeUsernameFirstLetter(String username){
+    public static String toChangeUsernameFirstLetter(String username){
        String usernameWithCapitalFirstLetter = "";
        String letter;
        for (int letterNum = 0; letterNum < username.length(); letterNum++){
@@ -153,9 +153,19 @@ public class Hangman {
             gameChoiceImplementer();
         }else if (chosenInstruction.equals("C")){
             printCredits();
+            try {
+                leaderboard.publishPhoto();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             gameChoiceImplementer();
         }else if (chosenInstruction.equals("Q")){
             quitTheGame();
+            try {
+                leaderboard.publishPhoto();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 

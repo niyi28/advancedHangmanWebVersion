@@ -8,7 +8,8 @@ public class InputValidator {
 
     public String getValidGuess(){
         String guessedLetter = getGuess();
-        while(!isValidLength(guessedLetter) || !isValidLetter(guessedLetter) || !isNewLetter(guessedLetter)){
+        while(!isValidLength(guessedLetter) || !isValidLetter(guessedLetter) ||
+                !isNewLetter(guessedLetter)){
             System.out.println("NOT valid! Its either you put in an invalid letter or repeating an already used letter ");
             System.out.println("");
             guessedLetter = getGuess();
@@ -17,10 +18,7 @@ public class InputValidator {
     }
 
     private boolean checkIndex(String guessedLetter){
-        if (guessedLetter.length() > 0){
-            return true;
-        }
-        return false;
+        return guessedLetter.length() == 0 || guessedLetter.length() < 0;
     }
 
     /*private boolean checkStringIndex(String guessedWord)*/
@@ -31,7 +29,7 @@ public class InputValidator {
     }
 
     private boolean isValidLength (String guessedLetter){
-        return !(guessedLetter.length() > 1);
+        return !(guessedLetter.length() > 1 || guessedLetter.length() == 0);
     }
 
     private boolean isValidLetter (String guessedLetter){
