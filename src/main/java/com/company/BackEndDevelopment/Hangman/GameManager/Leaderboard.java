@@ -35,7 +35,7 @@ public class Leaderboard {
 
     public String publishPhoto() throws Exception {
         String url =  "https://api.telegram.org/bot5067225993:AAFA0p-uucy_zXBbp23XQPJL-xDHKvPqLoU/SendPhoto";
-        String path = "https://pbs.twimg.com/media/FGkEbm6XwAAxp1H?format=png&name=small";
+        String path = "https://pbs.twimg.com/media/FGl6w60WYAMeSJK?format=jpg&name=small";
 
         final URL myUrl = UriComponentsBuilder
                 .fromHttpUrl(url)
