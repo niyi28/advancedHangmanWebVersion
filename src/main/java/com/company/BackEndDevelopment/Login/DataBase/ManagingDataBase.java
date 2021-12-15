@@ -1,6 +1,7 @@
 package com.company.BackEndDevelopment.Login.DataBase;
 
 
+import com.company.BackEndDevelopment.Hangman.GameManager.Hangman;
 import com.company.BackEndDevelopment.Hangman.ScoreManager.GameStatusChecker;
 import com.company.BackEndDevelopment.Hangman.ScoreManager.ScoreManagement;
 
@@ -152,7 +153,7 @@ public class ManagingDataBase {
             rows.add(headers);
 
             for (Map.Entry<String, String> entry : listArranged){
-                rows.add(Arrays.asList(entry.getKey(),
+                rows.add(Arrays.asList(Hangman.toChangeUsernameFirstLetter(entry.getKey()),
                         userAndScores.get(entry.getKey()).get(1), userAndScale.get(entry.getKey())));
             }
             return rows;
@@ -171,13 +172,13 @@ public class ManagingDataBase {
 
             for (Map.Entry<String, String> entry : listArranged){
                 if (userAndScale.get(entry.getKey()).equals("Lost")){
-                    rows.add(Arrays.asList(entry.getKey(), userAndScores.get(entry.getKey()).get(0),
+                    rows.add(Arrays.asList(Hangman.toChangeUsernameFirstLetter(entry.getKey()), userAndScores.get(entry.getKey()).get(0),
                             userAndScores.get(entry.getKey()).get(1), TEXT_RED + userAndScale.get(entry.getKey()) + TEXT_RESET));
                 }else if (userAndScale.get(entry.getKey()).equals("Won")){
-                    rows.add(Arrays.asList(entry.getKey(), userAndScores.get(entry.getKey()).get(0),
+                    rows.add(Arrays.asList(Hangman.toChangeUsernameFirstLetter(entry.getKey()), userAndScores.get(entry.getKey()).get(0),
                             userAndScores.get(entry.getKey()).get(1), TEXT_BLUE + userAndScale.get(entry.getKey()) + TEXT_RESET));
                 }else{
-                    rows.add(Arrays.asList(entry.getKey(), userAndScores.get(entry.getKey()).get(0),
+                    rows.add(Arrays.asList(Hangman.toChangeUsernameFirstLetter(entry.getKey()), userAndScores.get(entry.getKey()).get(0),
                             userAndScores.get(entry.getKey()).get(1), TEXT_YELLOW + userAndScale.get(entry.getKey()) + TEXT_RESET));
                 }
             }

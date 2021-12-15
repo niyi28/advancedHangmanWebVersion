@@ -13,7 +13,7 @@ import java.io.IOException;
 
 public class ApplicationOverview {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         LoginValidation loginValidation = new LoginValidation();
         try {
             loginValidation.flockingIntoSocialFolks();
