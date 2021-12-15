@@ -1,7 +1,6 @@
 package com.company.BackEndDevelopment.Application;
 
 import com.company.BackEndDevelopment.Hangman.GameManager.Hangman;
-import com.company.BackEndDevelopment.Hangman.GameManager.Leaderboard;
 import com.company.BackEndDevelopment.Hangman.SupplementaryClasses.TableFormatCreator;
 import com.company.BackEndDevelopment.Login.DataBase.ManagingDataBase;
 import com.company.BackEndDevelopment.Login.LoginValidation;
