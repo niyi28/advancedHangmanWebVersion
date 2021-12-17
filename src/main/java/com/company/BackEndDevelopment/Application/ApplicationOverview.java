@@ -1,6 +1,7 @@
 package com.company.BackEndDevelopment.Application;
 
 import com.company.BackEndDevelopment.Hangman.GameManager.Hangman;
+import com.company.BackEndDevelopment.Hangman.GameManager.Leaderboard;
 import com.company.BackEndDevelopment.Hangman.SupplementaryClasses.TableFormatCreator;
 import com.company.BackEndDevelopment.Login.DataBase.ManagingDataBase;
 import com.company.BackEndDevelopment.Login.LoginValidation;
@@ -13,7 +14,7 @@ import java.io.IOException;
 public class ApplicationOverview {
 
     public static void main(String[] args) {
-        LoginValidation loginValidation = new LoginValidation();
+        /*LoginValidation loginValidation = new LoginValidation();
         try {
             loginValidation.flockingIntoSocialFolks();
         } catch (IOException e) {
@@ -38,6 +39,17 @@ public class ApplicationOverview {
             System.out.println(TableFormatCreator.formatAsTable(ManagingDataBase.makingDatabaseAvailable()));
         } catch (IOException e) {
             e.printStackTrace();
+        }*/
+        Leaderboard leaderboard = new Leaderboard();
+        String userInput = null;
+        try {
+            /*leaderboard.publishNewScore("cool", 4);*/
+            leaderboard.clearMessage();
+            userInput = leaderboard.getTelegramUserMessage();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        System.out.println("userInput: "+ userInput);
+        System.out.println(userInput.equals("T"));
     }
 }
