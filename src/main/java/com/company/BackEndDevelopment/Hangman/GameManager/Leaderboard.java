@@ -68,6 +68,7 @@ public class Leaderboard {
         sendRequest(myUrl);
         return sucess;
     }
+    /*""*/
     public String getTelegramUserMessage() throws Exception {
         String url =  "https://api.telegram.org/bot5040566670:AAHuKtZz4820-khAL3AiAwzKGpM0dlny8Rg/getUpdates";
 
